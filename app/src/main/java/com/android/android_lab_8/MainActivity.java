@@ -6,10 +6,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -46,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mWebView.setWebViewClient(new MyWebViewClient());
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tw = (TextView) view;
+                mWebView.loadUrl("http://" + tw.getText());
+            }
+        });
     }
 
     private class MyWebViewClient extends WebViewClient {
